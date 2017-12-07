@@ -56,17 +56,17 @@ window.countNRooksSolutions = function(n) {
   // create for loop to increment over index
   //for (var r = 0; r < n; r++) {
     // create another loop for row
-    for (var i = 0; i < n; i++) {
+  for (var i = 0; i < n; i++) {
       //call findNrooks rooks solutions on     
       // if solution found increment solutionCount
-      if (i === 1 && n === 4) {
-        debugger;
-      }
+    if (i === 1 && n === 4) {
+      debugger;
+    }
       //console.log("Solution: ", findNRooksSolution(n, i, r));
-      if (findNRooksSolution(n, i, 0)) {
-        solutionCount++;
-        console.log('solutionCount: ', solutionCount)
-      }
+    if (findNRooksSolution(n, i, 0)) {
+      solutionCount++;
+      console.log('solutionCount: ', solutionCount);
+    }
     //}
   }
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
