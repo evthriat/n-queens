@@ -339,10 +339,10 @@
 
       } else {
         index = Math.abs(minorDiagonalColumnIndexAtFirstRow);
-        console.log('index', index, 'rowKey:', rowKey);
+        //console.log('index', index, 'rowKey:', rowKey);
         rowKey = 0;
-        while (index >= 0) { 
-          console.log(diagonals[rowKey]);
+        while (rowKey <= matrixSize) { 
+          //console.log(rowKey);
           if (diagonals[rowKey][index] === 1) { 
             count++;
           }
