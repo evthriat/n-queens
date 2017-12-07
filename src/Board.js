@@ -193,34 +193,77 @@
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
       var diagonals = this.attributes;
-
-      // if the MDCAFR index equals 0
-      var isTopLeft = majorDiagonalColumnIndexAtFirstRow === 0 ? true : false;
-        // the increment up as we move down the array
-      // if not zero
-      var index = majorDiagonalColumnIndexAtFirstRow;
-        // then decrement the index value down the array
-      // create count variable that equals 0
+      var rowKey, index; 
+      var matrixSize = diagonals['n'] - 1;
       var count = 0;
-      // loop over each array in diagonals object
-      for (var key in diagonals) {
-        // if count is greater than 1
-        if (Array.isArray(diagonals[key])) {
-          if (diagonals[key][index] === 1) {
+      // if majorDiagonalColumnIndexAtFirstRow is negative, move down rows
+      if (majorDiagonalColumnIndexAtFirstRow < 0) {
+        // absolute value of arguemnt is key value for row;
+        rowKey = Math.abs(majorDiagonalColumnIndexAtFirstRow);
+        index = 0;
+        while (rowKey <= matrixSize) {
+          if (diagonals[rowKey][index] === 1) {
             count++;
           }
+          if (count > 1) {
+            return true;
+          } 
+          rowKey++;
+          index++;
         }
-        if (count > 1) {
-          // return true
-          return true;
+
+      } else {
+        index = majorDiagonalColumnIndexAtFirstRow;
+        rowKey = 0;
+        while (index <= matrixSize) {
+          if (diagonals[rowKey][index] === 1) {
+            count++;
+          }
+          if (count > 1) {
+            return true;
+          }
+          rowKey++;
+          index++;
         }
-        isTopLeft ? index++ : index--;
       }
+      return false;
+        //index increments up from 0;
+      // if majorDiagonalColumnIndexAtFirstRow is positive, move accross column
+        //argument is index of first row
+        //index increments up from first arg value
+      // starting at index, look at diagonals 
+        //if diagonal piece count is more than 1
+          //return true;
+      //if no conflict, return false;
+      
 
 
 
-
-
+  
+      // // if the MDCAFR index equals 0
+      // var isTopLeft = majorDiagonalColumnIndexAtFirstRow === 0 ? true : false;
+      //   // the increment up as we move down the array
+      // // if not zero
+      // var index = majorDiagonalColumnIndexAtFirstRow;
+      //   // then decrement the index value down the array
+      // // create count variable that equals 0
+      // var count = 0;
+      // // loop over each array in diagonals object
+      // //debugger;
+      // for (var key in diagonals) {
+      //   // if count is greater than 1
+      //   if (Array.isArray(diagonals[key])) {
+      //     if (diagonals[key][index] === 1) {
+      //       count++;
+      //     }
+      //   }
+      //   if (count > 1) {
+      //     // return true
+      //     return true;
+      //   }
+      //   isTopLeft ? index++ : index--;
+      // }
+      // return false;
 
       // var leftCount = 0;
       // var rightCount = 0;
@@ -253,8 +296,8 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      console.log(this.hasMajorDiagonalConflictAt())
-      return this.hasMajorDiagonalConflictAt(); // fixme
+
+      return false; // fixme
     },
 
 
