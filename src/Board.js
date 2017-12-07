@@ -296,7 +296,17 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-
+      var length = this.attributes['n'] - 1;
+      for (i = -length; i <= length; i++) {
+        if (this.hasMajorDiagonalConflictAt(i) === true) {
+          return true;
+        }
+      }
+      //find length of array (n)
+      //run hasMajorDiagonalConflictAt from positive to negative n
+      //if any return true,
+        //return true
+      //return false
       return false; // fixme
     },
 
@@ -307,11 +317,54 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
+      var diagonals = this.attributes;
+      var rowKey, index; 
+      var matrixSize = diagonals['n'] - 1;
+      var count = 0;
+      // if minorDiagonalColumnIndexAtFirstRow is negative, move down rows
+      if (minorDiagonalColumnIndexAtFirstRow < 0) {
+        // absolute value of arguemnt is key value for row;
+        rowKey = Math.abs(minorDiagonalColumnIndexAtFirstRow);
+        index = matrixSize;
+        while (rowKey <= matrixSize) {
+          if (diagonals[rowKey][index] === 1) {
+            count++;
+          }
+          if (count > 1) {
+            return true;
+          } 
+          rowKey++;
+          index--;
+        }
+
+      } else {
+        index = Math.abs(minorDiagonalColumnIndexAtFirstRow);
+        console.log('index', index, 'rowKey:', rowKey);
+        rowKey = 0;
+        while (index >= 0) { 
+          console.log(diagonals[rowKey]);
+          if (diagonals[rowKey][index] === 1) { 
+            count++;
+          }
+          if (count > 1) {
+            return true;
+          }
+          rowKey++;
+          index--;
+        }
+      }
       return false; // fixme
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
+      var length = this.attributes['n'] - 1;
+      for (i = -length; i <= length; i++) {
+        if (this.hasMinorDiagonalConflictAt(i) === true) {
+          return true;
+        }
+      }
+
       return false; // fixme
     }
 
