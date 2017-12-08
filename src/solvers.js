@@ -98,7 +98,7 @@ window.findNQueensSolution = function(n) {
     return {n: 0};
   }
   if (n === 1) {
-    solution.togglePiece(0,0);
+    solution.togglePiece(0, 0);
     return [solution.attributes[0]];
   }
   if (n % 2 === 0) {
@@ -129,6 +129,13 @@ window.findNQueensSolution = function(n) {
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
   var solutionCount = undefined; //fixme
+  
+  var recursiveLook = function(row) {
+    if (row === n) {
+      
+    }
+  };
+
 
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
